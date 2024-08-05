@@ -1,25 +1,30 @@
 import React from 'react';
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
+import { Root } from '../router/root';
+import './style.scss'
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
-
-const items = [UserOutlined, VideoCameraOutlined, UploadOutlined, UserOutlined].map(
-  (icon, index) => ({
-    key: String(index + 1),
-    icon: React.createElement(icon),
-    label: `nav ${index + 1}`,
-  }),
-);
 
 const App: React.FC = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+  
+  const navigate = useNavigate()
+
+  const menuItems = Root.map((item, index) => ({
+    key: String(index + 1),
+    icon: item.icon,
+    label: item.title,
+    path: item.path, // Include the path in the menu item
+  }));
 
   return (
-    <Layout>
+    <Layout style={{ height: '100vh' }}>
       <Sider
+        className='sidebar'
+        style={{ height: '100vh', background: 'white' }}
         breakpoint="lg"
         collapsedWidth="0"
         onBreakpoint={(broken) => {
@@ -30,11 +35,16 @@ const App: React.FC = () => {
         }}
       >
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} />
+        <Menu mode="inline" defaultSelectedKeys={['1']} items={menuItems} onClick={({ key }) => {
+            const item = menuItems.find(i => i.key === key);
+            if (item) {
+              navigate(item.path);
+            }
+          }} />
       </Sider>
       <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }} />
-        <Content style={{ margin: '24px 16px 0' }}>
+        <Content style={{ margin: '24px 16px 0', background: '#EEF2F6' }}>
           <div
             style={{
               padding: 24,
@@ -43,12 +53,12 @@ const App: React.FC = () => {
               borderRadius: borderRadiusLG,
             }}
           >
-            content
+           <Outlet/>
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
+        {/* <Footer style={{ textAlign: 'center' }}>
           Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
+        </Footer> */}
       </Layout>
     </Layout>
   );

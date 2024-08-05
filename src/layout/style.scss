@@ -1,0 +1,15 @@
+.sidebar{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+    .ant-menu-item-selected {
+        color: rgb(188, 142, 91) !important;
+        background-color: rgba(188, 143, 91, 0.156) !important;;
+      }
+    
+    .ant-menu-item-active {
+        color: rgb(188, 142, 91) !important;
+        background-color: rgba(188, 143, 91, 0.156) !important;;
+    }
+
+}
+

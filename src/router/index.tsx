@@ -1,5 +1,5 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
-import { Login, Register } from "@pages";
+import { Login, Register, Home, Settings, Pointers, Reytings } from "@pages";
 import Layout from '@layout'
 import App from "../App";
 
@@ -11,8 +11,11 @@ export default function Router(){
                <Route index element={<Login />} /> 
                <Route path="/register" element={<Register/>}/>
                <Route path="/dashboard/*" element={<Layout />}>
-                    
-               </Route>
+                     <Route index element={<Home />} />
+                     <Route path="settings" element={<Settings />} />
+                     <Route path="pointers" element={<Pointers />} />
+                     <Route path="reyting" element={<Reytings />} />
+                </Route>
             </Route>
         )
     )

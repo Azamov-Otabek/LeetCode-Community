@@ -1,5 +1,5 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
-import { Login } from "@pages";
+import { Login, Register } from "@pages";
 import Layout from '@layout'
 import App from "../App";
 
@@ -9,6 +9,7 @@ export default function Router(){
         createRoutesFromElements(
             <Route path="/" element={<App/>}>
                <Route index element={<Login />} /> 
+               <Route path="/register" element={<Register/>}/>
                <Route path="/dashboard/*" element={<Layout />}>
                     
                </Route>

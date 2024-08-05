@@ -2,7 +2,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "./style.scss";
 import { Button, Form, Input } from "antd";
 import FormItem from "antd/es/form/FormItem";
-import { LockOutlined, MailOutlined } from "@ant-design/icons";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -39,23 +39,25 @@ function Login() {
 
           <div className="login-body">
             <Form onFinish={(values) => handleSubmit(values)}>
-              <p>Email</p>
+              <p>ID</p>
               <FormItem
-                name="email"
+                name="id"
                 hasFeedback
                 rules={[
                   {
                     required: true,
-                    type: "email",
-                    message: "Please input a valid email!",
+                    message: "Please input a valid id!",
                   },
                 ]}
                 
               >
-                <Input prefix={<MailOutlined />} size="large" placeholder="Email" name="email" />
+                <Input prefix={<UserOutlined />} size="large" placeholder="ID" name="id" />
               </FormItem>
               
-              <p>Password</p>
+              <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontWeight: 600}}>
+                <p>Password</p>
+                <a href="https://checkered-scarf-9d2.notion.site/Leetcode-Community-1c7c56f5618c41e8ae5d95d6fa7c48f7" target="_blank">Qo'shimcha ma'lumot</a>
+              </div>
               <FormItem
                 name="password"
                 hasFeedback
@@ -77,7 +79,7 @@ function Login() {
 
               <div className="login-tooltip"></div>
 
-              <Link className="login-link" to={'/'}>
+              <Link className="login-link" to={'/register'}>
                   Register
               </Link>
             </Form>
